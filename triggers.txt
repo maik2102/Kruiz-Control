@@ -1,8 +1,12 @@
-OnInit
-Chat Send "Kruiz Control Initialized"
+OnCommunityGoalProgress *
+TTS "UK English Male" 70 wait "10+2 Community Goal - {user} gave {amount}"
 
-OnCommand b 0 !example
-Chat Send "Success! It worked!"
+OnChannelPoint "Hi!"
+OBS Source "Kruiz-Control-Text" Text "{user}: {message}"
+Delay 2
+TTS "UK English Male" 70 wait "{user}: {message}"
+Delay 2
+OBS Source "Kruiz-Control-Text" Text ""
 
 OnCommand b 0 !kcreset
 Reset
