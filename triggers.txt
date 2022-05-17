@@ -1,5 +1,6 @@
 OnCommunityGoalProgress *
 TTS "UK English Male" 70 wait "10+2 Community Goal - {user} gave {amount}"
+Chat Send "{user} hat {amount} (Insg: {user_total}) Kanalpunkte zur Community-Herausforderung ({goal}) beigesteuert! Fortschritt: {progress} / {total}"
 
 OnChannelPoint "Hi!"
 OBS Source "Kruiz-Control-Text" Text "{user}: {message}"
