@@ -206,6 +206,7 @@ Each handler provides its own triggers and actions that can be used in a trigger
     + [SLOBS StartReplayBuffer](#slobs-startreplaybuffer)
     + [SLOBS StopReplayBuffer](#slobs-stopreplaybuffer)
     + [SLOBS ToggleStream](#slobs-togglestream)
+    + [SLOBS Volume](#slobs-volume)
 - [StreamElements](#streamelements)
   * [Triggers](#streamelements-triggers)
     + [OnSETwitchBits](#onsetwitchbits)
@@ -1712,14 +1713,14 @@ Enables the ability to interact with and respond to OBS.
 #### OBS Media Duration
 | | |
 ------------ | -------------
-**Info** | Used to retrieve the duration of a media source. `<source>` is the name of the source.
+**Info** | Used to retrieve the duration of a media source. `<source>` is the name of the source. The `<source>` must be active to retrieve the duration.
 **Format** | `OBS Media Duration <source>`
 **Example** | `OBS Media Duration AlertVideo`
 
 ##### Parameters
 | | |
 ------------ | -------------
-**duration** | The duration of the file in seconds.
+**duration** | The duration of the file in seconds. If the duration could not be retrieved, `0` is returned.
 
 ***
 
@@ -1852,6 +1853,8 @@ _Note: Messages are echo'd to all websocket-connected clients. This is useful fo
 **Format** | `OBS Size <scene> <source> <width> <height>`
 **Example** | `OBS Size BRB Webcam 1920 1080`
 
+_Note: `OBS Position` is not recommended for repositioning sources within groups. Sources in a group are positioned relative to the group, not the scene. Repositioning a source within a group may cause the size of the group to change, changing the source's relative position, and leading to unexpected results._
+
 ##### Parameters
 | | |
 ------------ | -------------
@@ -1943,7 +1946,7 @@ _Note: The browser source does not need to be in current/active scene for this t
 #### OBS TakeSourceScreenshot
 | | |
 ------------ | -------------
-**Info** | Used to take a screenshot of an OBS source and save it to a file. `<file>` is the absolute path to a file.
+**Info** | Used to take a screenshot of an OBS source and save it to a file. `<file>` is the absolute path to a file. The extension put on the file is used to determine the type of file generate. For most users, these are the acceptable extensions: `bmp`, `jpeg`, `jpg`, `pbm`, `pgm`, `png`, `ppm`, `xbm`, `xpm`.
 **Format** | `OBS TakeSourceScreenshot <source> <file>`
 **Example** | `OBS TakeSourceScreenshot Webcam "C:\Users\YOUR_USER_NAME\Documents\Stream\screenshot.png"`
 
@@ -1980,14 +1983,15 @@ _Note: The browser source does not need to be in current/active scene for this t
 #### OBS Volume
 | | |
 ------------ | -------------
-**Info** | Used to change the volume of an audio source. `<volume>` must be a number between 0.0 and 1.0. Note, volume stands for the amplitude/mul value and is NOT the dB value or a percentage. Please test for the expected result before usage.
-**Format** | `OBS Volume <source> <volume>`
+**Info** | Used to change the volume of an audio source. `<useDecibel>` is an optional true/false value (defaults to false) to specify whether `<volume>` should be interpreted as decibels/dB (true) or amplitude/mul (false). If using decibels/dB, `<volume>` must be a number less than or equal to 0.0; note that OBS will interpret dB values below -100.0 as -Inf. If using amplitude/mul, `<volume>` must be a number between 0.0 and 1.0; note that the amplitude/mul value is NOT a percentage, please test for the expected result before usage.
+**Format** | `OBS Volume <source> <volume> <useDecibel>`
 **Example** | `OBS Volume "Desktop Audio" 0.2`
+**Example (using decibels/dB)** | `OBS Volume "Desktop Audio" -3.6 true`
 
 ##### Parameters
 | | |
 ------------ | -------------
-**previous_volume** | The volume of the source before changing. This allows users to revert the volume to the prior level.
+**previous_volume** | The volume of the source before changing. This allows users to revert the volume to the prior level. The value will be returned as decibels/dB if `<useDecibel>` was true, and as amplitude/mul otherwise.
 
 ***
 
@@ -2392,6 +2396,20 @@ Enables the ability to interact with and respond to SLOBS.
 **Info** | Used to go live within SLOBSs or stop the given stream. Note, there's no way to specify if you're toggling the stream on or off.
 **Format** | `SLOBS ToggleStream`
 **Example** | `SLOBS ToggleStream`
+
+***
+
+#### SLOBS Volume
+| | |
+------------ | -------------
+**Info** | Used to change the volume of an audio source. `<source>` is the name of the audio source in the mixer. `<volume>` is a number between 0 and 1.0. Unlike [`OBS Volume`](#obs-volume), the SLOBS `<volume>` value indicates a percentage.
+**Format** | `SLOBS Volume <source> <volume>`
+**Example** | `SLOBS Volume "Desktop Audio" 0.2`
+
+##### Parameters
+| | |
+------------ | -------------
+**previous_volume** | The volume of the source before changing. This allows users to revert the volume to the prior level.
 
 ***
 
