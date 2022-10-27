@@ -1,5 +1,5 @@
 OnCommunityGoalProgress *
-TTS "UK English Male" 70 wait "10+2 Community Goal - {user} gave {amount}"
+TTS "UK English Male" 70 wait "Community Episode 4 - {user} gave {amount}"
 Chat Send "{user} hat {amount} (Insg: {user_total}) Kanalpunkte zur Community-Herausforderung ({goal}) beigesteuert! Fortschritt: {progress} / {total}"
 
 OnChannelPoint "Hi!"
@@ -108,6 +108,58 @@ OBS Source "Kruiz-Control-Text" Text ""
 OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
 OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
 
+OnCommand bmu Silverchaco 21600 !chaco
+OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
+OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
+OBS Source "Kruiz-Control-Text" Text "                                                                             Silverchaco - Willkommen!"
+Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\chaco-kind.mp4"
+OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
+Delay 15
+OBS Media Path "Kruiz-Control-Media" ""
+OBS Source "Kruiz-Control-Text" Text ""
+OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
+OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+
+
+
+OnChannelPoint "Blutgott: Was glaubt ihr wer ihr seid?"
+Play 30 wait Blutgott_Believe.wav
+
+OnChannelPoint "Blutgott: Ich verlange Blut!"
+Play 30 wait Blutgott_Blood.wav
+
+OnChannelPoint "Blutgott: Ich werde euch zerquetschen!"
+Play 30 wait Blutgott_Crush.wav
+
+OnChannelPoint "Blutgott: Ha ha ha ha!"
+Play 30 wait Blutgott_Death.wav
+
+OnChannelPoint "Blutgott: Ihr seid eine Enttäuschung!"
+Play 30 wait Blutgott_Disappointed.wav
+
+OnChannelPoint "Blutgott: Euch fehlt es an Angst!"
+Play 30 wait Blutgott_Fear.wav
+
+OnChannelPoint "Blutgott: Brennt in der Hölle!"
+Play 30 wait Blutgott_Hell.wav
+
+OnChannelPoint "Blutgott: Ich werde ungeduldig!"
+Play 30 wait Blutgott_Impatient.wav
+
+OnChannelPoint "Blutgott: Es wird Zeit für eine Lektion!"
+Play 30 wait Blutgott_Lesson.wav
+
+OnChannelPoint "Blutgott: Twitch Prime ist Mehrkostenfrei!"
+Play 30 wait Blutgott_Prime.wav
+
+OnChannelPoint "Blutgott: Ihr seid ganz schön aufmüpfig!"
+Play 30 wait Blutgott_Rebellious.wav
+
+OnChannelPoint "Blutgott: Leidet ihr unwürdigen Würmer!"
+Play 30 wait Blutgott_Suffer.wav
+
+OnChannelPoint "Blutgott: Willen brechen!"
+Play 30 wait Blutgott_Will.wav
 
 OnCommand b 0 !kcreset
 Chat Send "Reset/Reload done."
