@@ -48,6 +48,12 @@ Play Stop
 OnCommand e 0 !alarm
 Play 80 wait alarm.mp3
 
+OnCommand e 60 !malen
+Function 'currentDate = new Date(); return {date: currentDate.getFullYear() + "-" + (currentDate.getMonth() +1) + "-" + currentDate.getDate()}'
+Variable Set mal_board_url "https://wbo.ophir.dev/boards/Tiduin-{date}"
+OBS Source Mal-Board URL {mal_board_url}
+chat SEND {mal_board_url}
+
 OnCommand bmu TKill1987 21600 !tkill
 OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
 OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
