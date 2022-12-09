@@ -1,5 +1,5 @@
 OnCommunityGoalProgress *
-TTS "UK English Male" 70 wait "Community Episode 4 - {user} gave {amount}"
+# TTS "UK English Male" 70 wait "Community Episode 4 - {user} gave {amount}"
 Chat Send "{user} hat {amount} (Insg: {user_total}) Kanalpunkte zur Community-Herausforderung ({goal}) beigesteuert! Fortschritt: {progress} / {total}"
 
 OnChannelPoint "Hi!"
@@ -15,35 +15,23 @@ OBS Source "Kruiz-Control-Text" Text ""
 OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
 OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" off
 
-OnChannelPoint "Faul"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Clip_edo-Maik-is-Faul.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" on
-OBS Media Duration {media_source_kruize}
-Delay {duration}
-Variable Set media_source_kruize ""
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" off
-
 OnChannelPoint "Wuffi-Pic"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Wuffipic.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" on
-OBS Media Duration {media_source_kruize}
-Delay {duration}
-Variable Set media_source_kruize ""
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" off
+	TiduinMediaAction "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Wuffipic.mp4" 6
+
+OnChannelPoint "Faul"
+	TiduinMediaAction "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Clip_edo-Maik-is-Faul.mp4" 7
 
 OnChannelPoint "ThisIsFine"
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media-Full" on
-Play 30 nowait car-on-fire.mp3
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\fire_transparent.gif"
-OBS Media Path "Kruiz-Control-Media-Full" {media_source_kruize}
-Delay 15
-OBS Media Path "Kruiz-Control-Media-Full" ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media-Full" off
-Play Stop
+	Play 30 nowait car-on-fire.mp3
+	TiduinMediaAction "Kruiz-Control-Media-Full" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\fire_transparent.gif" 15
+	Play Stop
+
+OnAction TiduinMediaAction
+	OBS Media Path {in1} {in2}
+	OBS SceneSource "[T-BS]Overlays General" {in1} on
+	Delay {in3}
+	OBS SceneSource "[T-BS]Overlays General" {in1} off
+	OBS Media Path {in1} ""
 
 OnCommand e 0 !alarm
 Play 80 wait alarm.mp3
@@ -54,78 +42,37 @@ Variable Set mal_board_url "https://wbo.ophir.dev/boards/Tiduin-{date}"
 OBS Source Mal-Board URL {mal_board_url}
 chat SEND {mal_board_url}
 
+OnAction TiduinPersonalClipAction
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
+	OBS Source "Kruiz-Control-Text" Text {in3}
+	OBS Media Path "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\{in1}.mp4"
+	Delay {in2}
+	OBS Media Path "Kruiz-Control-Media" ""
+	OBS Source "Kruiz-Control-Text" Text ""
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+
 OnCommand bmu TKill1987 21600 !tkill
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             TKills lieblings Clip - Hallo TKill!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\tkill.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 20
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "tkill" 20 "                                                                             TKills lieblings Clip - Hallo TKill!"
 
 OnCommand bmu Kurai_Chikara 21600 !kurai
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             KuraiChikara - Willkommen!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\kurai.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 20
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "kurai" 20 "                                                                             KuraiChikara - Willkommen!"
 
 OnCommand bmu herbiologie 21600 !herbi
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             Herbiologie - Willkommen!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\herbie.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 22
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "herbie" 22 "                                                                             Herbiologie - Willkommen!"
 
 OnCommand bmu TianaRista 21600 !tiana
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             Tiana - Willkommen!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\tiana.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 25
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "tiana" 25 "                                                                             Tiana - Willkommen!"
 
 OnCommand bmu Wadisch 21600 !wadisch
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             Wadisch - Willkommen!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\wadisch.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 21
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "wadisch" 21 "                                                                             Wadisch - Willkommen!"
 
 OnCommand bmu Silverchaco 21600 !chaco
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             Silverchaco - Willkommen!"
-Variable Set media_source_kruize "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\chaco-kind.mp4"
-OBS Media Path "Kruiz-Control-Media" {media_source_kruize}
-Delay 15
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
+	TiduinPersonalClipAction "chaco" 15 "                                                                             Silverchaco - Willkommen!"
 
+OnCommand bmu tomwest2 21600 !tom
+	TiduinPersonalClipAction "tomwest2" 20 "                                                                             Tomwest - Willkommen!"
 
 
 OnChannelPoint "Blutgott: Was glaubt ihr wer ihr seid?"
