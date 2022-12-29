@@ -1,25 +1,69 @@
+OnInit
+	Log "OnInit"
+	#Discord Init
+	Discord Create "subrad" "https://discord.com/api/webhooks/1057999234055544842/wXI3UGxJ-ZfhNGGo_bnIqvyOb-U7dbEDMnyYw-wLYfoEY1HaQInLZVzX0fxSMAS4_Gdg"
+
+
 OnCommunityGoalProgress *
-# TTS "UK English Male" 70 wait "Community Episode 4 - {user} gave {amount}"
-Chat Send "{user} hat {amount} (Insg: {user_total}) Kanalpunkte zur Community-Herausforderung ({goal}) beigesteuert! Fortschritt: {progress} / {total}"
+	# TTS "UK English Male" 70 wait "Community Episode 4 - {user} gave {amount}"
+	Chat Send "{user} hat {amount} (Insg: {user_total}) Kanalpunkte zur Community-Herausforderung ({goal}) beigesteuert! Fortschritt: {progress} / {total}"
+
+OnSLTwitchGiftSubNoSync
+	Log "OnSLTwitchGiftSubNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {gifter} - {moths} - {tier} - {stringData}
+
+OnSLTwitchCommunityGiftSubNoSync
+	Log "OnSLTwitchCommunityGiftSubNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {gifter} - {tier} - {amount} - {stringData}
+
+OnSLTwitchSubNoSync
+	Log "OnSLTwitchSubNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {months} - {tier} - {message} - {stringData}
+
+OnSLTwitchFollowNoSync
+	Log "OnSLTwitchFollowNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {stringData}
+
+OnSLDonationNoSync
+	Log "OnSLDonationNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {amount} - {message} - {stringData}
+
+OnSLTwitchBitsNoSync
+	Log "OnSLTwitchBitsNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {amount} - {message} - {stringData}
+
+OnSLTwitchRaidNoSync
+	Log "OnSLTwitchRaidNoSync"
+	Function 'return {stringData: JSON.stringify([data])}'
+	Log {user} - {raiders} - {stringData}
 
 OnChannelPoint "Hi!"
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" on
-OBS Source "Kruiz-Control-Text" Text "                                                                             {user}: {message}"
-OBS Media Path "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Hi-clip.mp4"
-Delay 2
-TTS "UK English Male" 70 wait "{user}: {message}"
-Delay 2
-OBS Media Path "Kruiz-Control-Media" ""
-OBS Source "Kruiz-Control-Text" Text ""
-OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
-OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" off
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
+	OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" on
+	OBS Source "Kruiz-Control-Text" Text "                                                                             {user}: {message}"
+	OBS Media Path "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Hi-clip.mp4"
+	Delay 2
+	TTS "UK English Male" 70 wait "{user}: {message}"
+	Delay 2
+	OBS Media Path "Kruiz-Control-Media" ""
+	OBS Source "Kruiz-Control-Text" Text ""
+	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" off
+	OBS SceneSource "[T-BS]Overlays General" ""Kruiz-Control-Media"" off
 
 OnChannelPoint "Wuffi-Pic"
 	TiduinMediaAction "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Wuffipic.mp4" 6
 
 OnChannelPoint "Faul"
 	TiduinMediaAction "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\Clip_edo-Maik-is-Faul.mp4" 7
+
+OnChannelPoint "Alles schrecklich"
+	TiduinMediaAction "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\chaco_schrecklich.mp4" 7
 
 OnChannelPoint "ThisIsFine"
 	Play 30 nowait car-on-fire.mp3
@@ -33,14 +77,20 @@ OnAction TiduinMediaAction
 	OBS SceneSource "[T-BS]Overlays General" {in1} off
 	OBS Media Path {in1} ""
 
+OnCommand bm 0 !Sub-Rad !subrad !sr
+	Function 'return {match: [after].includes("Rudern") || [after].includes("Pkt")};'
+	If {match} = true
+	Discord Message "subrad" "{after}"
+	Discord Send "subrad" 
+
 OnCommand e 0 !alarm
-Play 80 wait alarm.mp3
+	Play 80 wait alarm.mp3
 
 OnCommand e 60 !malen
-Function 'currentDate = new Date(); return {date: currentDate.getFullYear() + "-" + (currentDate.getMonth() +1) + "-" + currentDate.getDate()}'
-Variable Set mal_board_url "https://wbo.ophir.dev/boards/Tiduin-{date}"
-OBS Source Mal-Board URL {mal_board_url}
-chat SEND {mal_board_url}
+	Function 'currentDate = new Date(); return {date: currentDate.getFullYear() + "-" + (currentDate.getMonth() +1) + "-" + currentDate.getDate()}'
+	Variable Set mal_board_url "https://wbo.ophir.dev/boards/Tiduin-{date}"
+	OBS Source Mal-Board URL {mal_board_url}
+	chat SEND {mal_board_url}
 
 OnAction TiduinPersonalClipAction
 	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
@@ -115,5 +165,5 @@ OnChannelPoint "Blutgott: Willen brechen!"
 Play 30 wait Blutgott_Will.wav
 
 OnCommand b 0 !kcreset
-Chat Send "Reset/Reload done."
-Reset
+	Chat Send "Reset/Reload done."
+	Reset

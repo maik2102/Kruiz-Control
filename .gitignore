@@ -16,3 +16,7 @@ settings/obs/address.txt
 settings/obs/password.txt
 settings/chat/oauth.txt
 settings/obs/password.txt
+settings/chat/oauth.txt
+settings/obs/password.txt
+settings/streamelements/jwtToken.txt
+settings/streamlabs/socketAPIToken.txt
