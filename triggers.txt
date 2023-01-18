@@ -96,7 +96,7 @@ OnAction TiduinPersonalClipAction
 	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" on
 	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Text" on
 	OBS Source "Kruiz-Control-Text" Text {in3}
-	OBS Media Path "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\{in1}.mp4"
+	OBS Media Path "Kruiz-Control-Media" "C:\Users\maik2\Dropbox\OBS\Kruiz-Control\videos\{in1}"
 	Delay {in2}
 	OBS Media Path "Kruiz-Control-Media" ""
 	OBS Source "Kruiz-Control-Text" Text ""
@@ -104,65 +104,82 @@ OnAction TiduinPersonalClipAction
 	OBS SceneSource "[T-BS]Overlays General" "Kruiz-Control-Media" off
 
 OnCommand bmu TKill1987 21600 !tkill
-	TiduinPersonalClipAction "tkill" 20 "                                                                             TKills lieblings Clip - Hallo TKill!"
+	TiduinPersonalClipAction "tkill.mp4" 20 "                                                                             TKills lieblings Clip - Hallo TKill!"
 
 OnCommand bmu Kurai_Chikara 21600 !kurai
-	TiduinPersonalClipAction "kurai" 20 "                                                                             KuraiChikara - Willkommen!"
+	TiduinPersonalClipAction "kurai.mp4" 20 "                                                                             KuraiChikara - Willkommen!"
 
 OnCommand bmu herbiologie 21600 !herbi
-	TiduinPersonalClipAction "herbie" 22 "                                                                             Herbiologie - Willkommen!"
+	TiduinPersonalClipAction "herbie.mp4" 22 "                                                                             Herbiologie - Willkommen!"
 
 OnCommand bmu TianaRista 21600 !tiana
-	TiduinPersonalClipAction "tiana" 25 "                                                                             Tiana - Willkommen!"
+	TiduinPersonalClipAction "tiana.mp4" 25 "                                                                             Tiana - Willkommen!"
 
 OnCommand bmu Wadisch 21600 !wadisch
-	TiduinPersonalClipAction "wadisch" 21 "                                                                             Wadisch - Willkommen!"
+	TiduinPersonalClipAction "wadisch.mp4" 21 "                                                                             Wadisch - Willkommen!"
 
 OnCommand bmu Silverchaco 21600 !chaco
-	TiduinPersonalClipAction "chaco" 15 "                                                                             Silverchaco - Willkommen!"
+	TiduinPersonalClipAction "tmp2.webm" 21 "                                                                             Silverchaco - Willkommen!"
 
 OnCommand bmu tomwest2 21600 !tom
-	TiduinPersonalClipAction "tomwest2" 20 "                                                                             Tomwest - Willkommen!"
+	TiduinPersonalClipAction "tomwest2.mp4" 20 "                                                                             Tomwest - Willkommen!"
 
+OnCommand bm 3000 !drogen
+	Play 40 wait "randy_drogenSolltenVerbotenWerden.mp3"
+
+OnCommand bm 3000 !clips
+	Play 40 wait "randy_clipsNichtWuetendNurEnttaeuscht.mp3"
+
+OnChannelPoint "Wasser Marsch!"
+	Play 30 wait "ES_Drink Water - SFX Producer.mp3"
+
+OnChannelPoint "Was soll das?"
+	Play 30 wait tomwest-was-soll-das.mp3
+
+OnChannelPoint "Ist das dein Sch* Ernst?"
+	Play 30 wait ist-das-dein-sch-ernst.mp3
+
+OnChannelPoint "F*** it all!"
+	Play 30 wait fuck-it-all_short.mp3
 
 OnChannelPoint "Blutgott: Was glaubt ihr wer ihr seid?"
-Play 30 wait Blutgott_Believe.wav
+	Play 30 wait Blutgott_Believe.wav
 
 OnChannelPoint "Blutgott: Ich verlange Blut!"
-Play 30 wait Blutgott_Blood.wav
+	Play 30 wait Blutgott_Blood.wav
 
 OnChannelPoint "Blutgott: Ich werde euch zerquetschen!"
-Play 30 wait Blutgott_Crush.wav
+	Play 30 wait Blutgott_Crush.wav
 
 OnChannelPoint "Blutgott: Ha ha ha ha!"
-Play 30 wait Blutgott_Death.wav
+	Play 30 wait Blutgott_Death.wav
 
 OnChannelPoint "Blutgott: Ihr seid eine Enttäuschung!"
-Play 30 wait Blutgott_Disappointed.wav
+	Play 30 wait Blutgott_Disappointed.wav
 
 OnChannelPoint "Blutgott: Euch fehlt es an Angst!"
-Play 30 wait Blutgott_Fear.wav
+	Play 30 wait Blutgott_Fear.wav
 
 OnChannelPoint "Blutgott: Brennt in der Hölle!"
-Play 30 wait Blutgott_Hell.wav
+	Play 30 wait Blutgott_Hell.wav
 
 OnChannelPoint "Blutgott: Ich werde ungeduldig!"
-Play 30 wait Blutgott_Impatient.wav
+	Play 30 wait Blutgott_Impatient.wav
 
 OnChannelPoint "Blutgott: Es wird Zeit für eine Lektion!"
-Play 30 wait Blutgott_Lesson.wav
+	Play 30 wait Blutgott_Lesson.wav
 
 OnChannelPoint "Blutgott: Twitch Prime ist Mehrkostenfrei!"
-Play 30 wait Blutgott_Prime.wav
+	Play 30 wait Blutgott_Prime.wav
 
 OnChannelPoint "Blutgott: Ihr seid ganz schön aufmüpfig!"
-Play 30 wait Blutgott_Rebellious.wav
+	Play 30 wait Blutgott_Rebellious.wav
 
 OnChannelPoint "Blutgott: Leidet ihr unwürdigen Würmer!"
-Play 30 wait Blutgott_Suffer.wav
+	Play 30 wait Blutgott_Suffer.wav
 
 OnChannelPoint "Blutgott: Willen brechen!"
-Play 30 wait Blutgott_Will.wav
+	Play 30 wait Blutgott_Will.wav
 
 OnCommand b 0 !kcreset
 	Chat Send "Reset/Reload done."
